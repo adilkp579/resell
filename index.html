@@ -12,7 +12,7 @@
 *,html{scrollbar-width:none;-ms-overflow-style:none}
 *::-webkit-scrollbar,html::-webkit-scrollbar{display:none;width:0;height:0}
 html{overflow-x:hidden;scroll-behavior:smooth;scroll-padding-top:var(--nav)}
-body{max-width:100vw;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body{max-width:100vw;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:clip;-webkit-font-smoothing:antialiased}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
 button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
@@ -207,13 +207,13 @@ footer a:hover{color:#fff}
 .rv.in{opacity:1;transform:none!important}
 @media(max-width:1199px){.grid,#pgrid,#spg{grid-template-columns:repeat(2,1fr)}.menu{gap:20px}.fg{grid-template-columns:repeat(2,1fr)}.rc{flex-basis:calc((100% - 24px)/2)}.sg div{padding:44px}.chip{display:none}}
 @media(max-width:899px){.menu{display:none}.burger{display:grid}.ab,.sg,.pvg{grid-template-columns:1fr}.ab{gap:36px}.pvg{gap:28px;padding-top:80px}.sg{min-height:0}}
-@media(max-width:767px){section{padding:64px 0}.wrap{padding:0 18px}.cats{grid-template-columns:1fr;gap:16px}.cc{aspect-ratio:16/11}
+@media(max-width:767px){section{padding:64px 0}.wrap{padding:0 18px}.cats{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;margin:0 -18px;padding:0 18px 6px}.cc{flex:0 0 44%;scroll-snap-align:start;aspect-ratio:3/4}.cc div{left:12px;right:12px;bottom:12px}.cc h3{font-size:16px}.cc h3 span{font-size:11px}.cc .ar{width:32px;height:32px}.cc .ar svg{width:16px;height:16px}
 .grid.hs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 -18px;padding:6px 18px 20px;scrollbar-width:none}.grid.hs::-webkit-scrollbar{display:none}.grid.hs .card{flex:0 0 82%;scroll-snap-align:center}
-.grid{grid-template-columns:1fr}#pgrid,#spg{grid-template-columns:repeat(2,1fr);gap:12px}.card{aspect-ratio:3/4}
-#pgrid .card,#spg .card{aspect-ratio:3/4.4;border-radius:22px}#pgrid .ov2,#spg .ov2{padding:12px}
-#pgrid .nm,#spg .nm{font-size:14px;gap:4px}#pgrid .nm svg,#spg .nm svg{width:14px;height:14px}#pgrid .ov2 p,#spg .ov2 p{display:none}
-#pgrid .ms,#spg .ms{margin:8px 0 10px;grid-template-columns:1fr 1fr}#pgrid .ms div:last-child,#spg .ms div:last-child{display:none}#pgrid .ms b,#spg .ms b{font-size:13px}#pgrid .ms span,#spg .ms span{font-size:10px}
-#pgrid .ac,#spg .ac{gap:6px}#pgrid .add,#spg .add{min-height:40px;font-size:12px;border-radius:20px}#pgrid .fav,#spg .fav{width:38px;min-height:40px;border-radius:20px}#pgrid .fav svg,#spg .fav svg{width:16px;height:16px}
+.grid{grid-template-columns:1fr}#pgrid,#spg,.sr{grid-template-columns:repeat(2,1fr);gap:12px}.card{aspect-ratio:3/4}
+#pgrid .card,#spg .card,.sr .card{aspect-ratio:3/4.4;border-radius:22px}#pgrid .ov2,#spg .ov2,.sr .ov2{padding:12px}
+#pgrid .nm,#spg .nm,.sr .nm{font-size:14px;gap:4px}#pgrid .nm svg,#spg .nm svg,.sr .nm svg{width:14px;height:14px}#pgrid .ov2 p,#spg .ov2 p,.sr .ov2 p{display:none}
+#pgrid .ms,#spg .ms,.sr .ms{margin:8px 0 10px;grid-template-columns:1fr 1fr}#pgrid .ms div:last-child,#spg .ms div:last-child,.sr .ms div:last-child{display:none}#pgrid .ms b,#spg .ms b,.sr .ms b{font-size:13px}#pgrid .ms span,#spg .ms span,.sr .ms span{font-size:10px}
+#pgrid .ac,#spg .ac,.sr .ac{gap:6px}#pgrid .add,#spg .add,.sr .add{min-height:40px;font-size:12px;border-radius:20px}#pgrid .fav,#spg .fav,.sr .fav{width:38px;min-height:40px;border-radius:20px}#pgrid .fav svg,#spg .fav svg,.sr .fav svg{width:16px;height:16px}
 .hero .btns{flex-direction:column}.hero .btn{width:100%}.hero{align-items:flex-end;padding-bottom:64px}
 .rc{flex-basis:86%}.stats{grid-template-columns:1fr 1fr 1fr}.stats b{font-size:20px}.fg{grid-template-columns:1fr 1fr}.fg>div:first-child{grid-column:1/-1}
 .sg div{padding:36px 22px}.sf{flex-direction:column}.sf .btn{width:100%}.sub{padding:44px 18px;border-radius:24px}.fq button{padding:18px;font-size:15px}.fa p{padding:0 18px 20px}
@@ -287,13 +287,14 @@ footer a:hover{color:#fff}
 .sp{z-index:40;transform:none;transition:opacity .35s,visibility .35s}.sp.open{transform:none}
 .spw{max-width:1240px;margin:0 auto;padding:calc(var(--nav) + 24px) 24px 60px}
 .sph{margin-bottom:16px}.sph h2{margin:18px 0 2px}.sph p{color:var(--mut);font-size:14px}
-.spb{position:sticky;top:var(--nav);z-index:5;display:flex;gap:30px;overflow-x:auto;margin:0 -24px 24px;padding:14px 24px 10px;background:transparent;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-.spb button{position:relative;flex:none;padding:6px 0;font-size:14px;font-weight:500;color:var(--mut);white-space:nowrap;transition:color .3s}
-.spb button:hover,.spb button.on{color:var(--ink)}
-.spb button:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;background:var(--ink);transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
-.spb button:hover:after,.spb button.on:after{transform:scaleX(1);transform-origin:left}
-.spb button small{opacity:.5;margin-left:4px;font-size:11px}
-@media(max-width:767px){.spw{padding:calc(var(--nav) + 16px) 16px 40px}.spb{margin:0 -16px 18px;padding:12px 16px 8px;gap:24px}}
+.spb{position:sticky;top:calc(var(--nav) + 8px);z-index:5;padding:8px 0;margin-bottom:14px}
+.spb .filters{margin:0;box-shadow:0 6px 18px rgba(17,17,17,.06)}.spb small{opacity:.55;margin-left:4px;font-size:11px}
+@media(max-width:767px){.spw{padding:calc(var(--nav) + 16px) 16px 40px}.spb{margin-bottom:12px}}
+#products .filters{position:sticky;top:calc(var(--nav) + 10px);z-index:6;box-shadow:0 8px 20px rgba(17,17,17,.08)}
+.ftrack{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 2px 24px}
+.ftrack .card{flex:0 0 calc((100% - 56px)/3);scroll-snap-align:start}
+@media(max-width:1199px){.ftrack .card{flex-basis:calc((100% - 28px)/2)}}
+@media(max-width:767px){.ftrack{gap:14px;margin:0 -18px;padding:6px 18px 20px;scroll-padding:0 18px}.ftrack .card{flex-basis:80%;scroll-snap-align:center}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}html{scroll-behavior:auto}}
 </style>
 </head>
@@ -319,7 +320,7 @@ footer a:hover{color:#fff}
 
 <section id="featured" style="padding-bottom:40px"><div class="wrap">
 <div class="rv" data-a="up"><span class="eyebrow">Curated for you</span><h2>Featured Picks</h2></div>
-<div class="grid hs" id="fg"></div></div></section>
+<div class="ftrack" id="fg"></div></div></section>
 
 <section id="categories" style="padding-top:56px"><div class="wrap">
 <div class="rv" data-a="up"><span class="eyebrow">Browse</span><h2>Shop by Category</h2></div>
@@ -328,8 +329,8 @@ footer a:hover{color:#fff}
 </div></section>
 
 <section id="products" style="padding-top:40px"><div class="wrap">
-<div class="rv" data-a="up"><span class="eyebrow">The collection</span><h2>Explore Our Products</h2>
-<div class="filters" id="flt"><span class="pill"></span></div></div>
+<div class="rv" data-a="up"><span class="eyebrow">The collection</span><h2>Explore Our Products</h2></div>
+<div class="filters" id="flt"><span class="pill"></span></div>
 <div id="pgrid"></div></div></section>
 
 <section class="show"><div class="sg">
@@ -428,7 +429,7 @@ var secs=NAV.map(function(n){return $('#'+n[1])});
 var spy=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)$$('.menu a').forEach(function(a){a.classList.toggle('on',a.dataset.s==e.target.id)})})},{rootMargin:'-45% 0px -50% 0px'});
 secs.forEach(function(s){spy.observe(s)});
 /* featured / best / categories */
-$('#fg').innerHTML=[1,5,10].map(function(i){return card(byId(i),{desc:1})}).join('');
+$('#fg').innerHTML=[1,5,10,6,12,8].map(function(i){return card(byId(i),{desc:1})}).join('');
 $('#bgd').innerHTML=[2,4,14].map(function(i){return card(byId(i),{tag:1,desc:1,rc:1})}).join('');
 var cnt=function(c){return P.filter(function(p){return p.g==c}).length};
 $('#cats').innerHTML=['Boys','Girls','Adults'].map(function(c,i){return'<div class="cc rv" data-a="up" style="--d:'+i*.12+'s" data-f="'+c+'"><img loading="lazy" src="'+U(CI[c],900)+'" alt="'+c+'" onerror="this.style.visibility=\'hidden\'"><div><h3>'+c+'<br><span>'+cnt(c)+' products</span></h3><span class="ar">'+ic.arrow+'</span></div></div>'}).join('');
@@ -442,7 +443,7 @@ function goTo(id){var e=$('#'+id);scrollTo({top:e.getBoundingClientRect().top+sc
 document.addEventListener('click',function(e){
 var f=e.target.closest('[data-f]');if(f){e.preventDefault();setF(f.dataset.f,!f.closest('#flt'));return}
 var s=e.target.closest('[data-shop]');if(s){e.preventDefault();openShop('All');return}
-var sc=e.target.closest('[data-sc]');if(sc){SC=sc.dataset.sc;$$('#spb button').forEach(function(b){b.classList.toggle('on',b.dataset.sc==SC)});rspg();$('#sp').scrollTop=0;return}
+var sc=e.target.closest('[data-sc]');if(sc){SC=sc.dataset.sc;$$('#spb button').forEach(function(b){b.classList.toggle('on',b.dataset.sc==SC)});mpS();rspg();$('#sp').scrollTop=0;return}
 if(e.target.closest('header a[href^="#"]')&&$('#sp').classList.contains('open'))closeAll();
 var fv=e.target.closest('[data-fav]');if(fv){e.stopPropagation();var id=+fv.dataset.fav,k=favs.indexOf(id);k>-1?favs.splice(k,1):favs.push(id);store('wk_fav',favs);$$('[data-fav="'+id+'"]').forEach(function(b){b.classList.toggle('on',k<0)});toast(k<0?'Added to favorites':'Removed from favorites');return}
 var a=e.target.closest('[data-add]');if(a){e.stopPropagation();add(+a.dataset.add,1);a.classList.add('done');setTimeout(function(){a.classList.remove('done')},1300);return}
@@ -463,7 +464,7 @@ $('#chk').onclick=function(){if(!cart.length)return toast('Add something to your
 function open(el){var wasSp=$('#sp').classList.contains('open');closeAll(1);if(wasSp&&(el.id=='dr'||el.id=='so'))$('#sp').classList.add('open');el.classList.add('open');if(!el.classList.contains('pv')&&el.id!='so')$('#ov').classList.add('open');document.body.classList.add('lock')}
 function closeAll(keep){['dr','so','pv','co','pp','sp','ov'].forEach(function(i){$('#'+i).classList.remove('open')});if(!keep){document.body.classList.remove('lock');if(/^#p-/.test(location.hash))history.replaceState(null,'',location.pathname+location.search)}}
 $('#cb').onclick=function(){open($('#dr'))};
-$('#pf').onclick=function(){rpp();open($('#pp'))};
+$('#pf').onclick=function(){PL={sent:false,m:'',otp:''};rpp();open($('#pp'))};
 document.addEventListener('keydown',function(e){if(e.key=='Escape')closeTop()});
 /* product view */
 var HL={Electronics:['12-month brand warranty','Quality-tested before dispatch','Ready to use with easy setup'],Kitchen:['Food-safe, durable materials','Easy to clean and maintain','Built for everyday cooking'],Fashion:['Soft, breathable fabric','Comfortable, true-to-size fit','Easy to wash and maintain'],Accessories:['Durable, well-finished build','Lightweight for everyday use','Designed to match any outfit'],Footwear:['Cushioned, comfortable sole','Lightweight and breathable','Durable grip for daily wear']};
@@ -505,12 +506,23 @@ $('#fqs').onclick=function(e){var b=e.target.closest('button');if(!b)return;var 
 function subm(){var v=$('#mob').value.replace(/[\s-]/g,''),m=$('#msg');m.className='msg';void m.offsetWidth;
 if(/^(?:\+91|91|0)?[6-9]\d{9}$/.test(v)){m.className='msg ok';m.textContent='🎉 You\'re subscribed! Watch out for exciting updates.';$('#mob').value=''}else{m.className='msg err';m.textContent='Please enter a valid 10-digit Indian mobile number.'}}
 $('#sbt').onclick=subm;$('#mob').onkeydown=function(e){if(e.key=='Enter')subm()};
+/* featured auto-rotate */
+var ft=$('#fg'),fpz=false,fid;
+function fhold(){fpz=true;clearTimeout(fid);fid=setTimeout(function(){fpz=false},4500)}
+['touchstart','wheel','pointerdown','keydown'].forEach(function(ev){ft.addEventListener(ev,fhold,{passive:true})});
+ft.addEventListener('mouseenter',function(){fpz=true;clearTimeout(fid)});ft.addEventListener('mouseleave',fhold);
+setInterval(function(){if(fpz||document.hidden)return;var rc=ft.getBoundingClientRect();if(rc.bottom<0||rc.top>innerHeight)return;var c=$('.card',ft);if(!c)return;var w=c.offsetWidth+(parseFloat(getComputedStyle(ft).columnGap)||0);if(ft.scrollLeft+ft.clientWidth>=ft.scrollWidth-8)ft.scrollTo({left:0,behavior:'smooth'});else ft.scrollBy({left:w,behavior:'smooth'})},3200);
 /* shop page */
 var SC='All',SPB=0,SCATS=['All','Electronics','Kitchen','Fashion','Accessories','Footwear'];
 function rspg(){var l=P.filter(function(p){return SC=='All'||p.c==SC});$('#spn').textContent=l.length+' product'+(l.length==1?'':'s');$('#spg').innerHTML=l.map(function(p){return card(p)}).join('')}
-function rsp(){$('#spb').innerHTML=SCATS.map(function(c){var n=c=='All'?P.length:P.filter(function(p){return p.c==c}).length;return'<button data-sc="'+c+'" class="'+(c==SC?'on':'')+'">'+c+' <small>'+n+'</small></button>'}).join('');rspg()}
-function openShop(c){SC=c||'All';rsp();open($('#sp'));$('#sp').scrollTop=0}
+function rsp(){$('#spb').innerHTML='<div class="filters"><span class="pill"></span>'+SCATS.map(function(c){var n=c=='All'?P.length:P.filter(function(p){return p.c==c}).length;return'<button data-sc="'+c+'" class="'+(c==SC?'on':'')+'">'+c+' <small>'+n+'</small></button>'}).join('')+'</div>';rspg();mpS()}
+function mpS(){var f=$('#spb .filters');if(!f)return;var b=$('button.on',f),p=$('.pill',f);if(b&&p){p.style.left=b.offsetLeft+'px';p.style.width=b.offsetWidth+'px'}}
+addEventListener('resize',mpS);
+function openShop(c){SC=c||'All';rsp();open($('#sp'));$('#sp').scrollTop=0;mpS()}
 function closeTop(){if($('#sp').classList.contains('open')&&($('#dr').classList.contains('open')||$('#so').classList.contains('open'))){['dr','so','ov'].forEach(function(i){$('#'+i).classList.remove('open')})}else closeAll()}
+/* account session (local demo storage) */
+var sess=function(){return store('wk_sess')},profOf=function(m){var a=store('wk_profs')||{};return a[m]||null};
+(function(){var o=store('wk_prof');if(o&&o.m&&!store('wk_profs')){var m={};m[o.m]=o;store('wk_profs',m);store('wk_sess',o.m)}})();
 /* checkout + profile */
 var CO={},ST=['Andhra Pradesh','Assam','Bihar','Chhattisgarh','Delhi','Goa','Gujarat','Haryana','Himachal Pradesh','Jharkhand','Karnataka','Kerala','Madhya Pradesh','Maharashtra','Odisha','Punjab','Rajasthan','Tamil Nadu','Telangana','Uttar Pradesh','Uttarakhand','West Bengal','Other state / UT'];
 var esc=function(t){return String(t==null?'':t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})};
@@ -519,8 +531,8 @@ var MOB=/^[6-9]\d{9}$/,TOT=function(){var sub=0;cart.forEach(function(c){sub+=c.
 function stp(n){return'<div class="stp">'+['Verify','Details','Confirm'].map(function(l,i){return'<div class="'+(i+1<=n?'on':'')+'"><i>'+(i+1<n?'✓':i+1)+'</i>'+l+'</div>'}).join('<hr>')+'</div>'}
 function F(id,l,v,a){return'<label class="f">'+l+'<input id="'+id+'" value="'+esc(v)+'" '+(a||'')+'><em class="fe"></em></label>'}
 function chk(id,ok,msg){var l=$('#'+id).closest('.f');l.classList.toggle('bad',!ok);$('.fe',l).textContent=ok?'':msg;return ok}
-function checkout(){var pf=store('wk_prof');CO={s:1,sent:false,m:pf?pf.m:''};rco();open($('#co'));$('#co').scrollTop=0}
-function rco(){var h,pf=store('wk_prof')||{},a=pf.a||{},t=TOT();
+function checkout(){var m=sess();CO={s:m?2:1,sent:false,m:m||''};rco();open($('#co'));$('#co').scrollTop=0}
+function rco(){var h,pf=profOf(CO.m)||{},a=pf.a||{},t=TOT();
 if(CO.s==1){h='<div class="cw one">'+stp(1)+'<div class="cbx"><h2>Verify your mobile number</h2><p class="sm">'+(CO.sent?'Enter the 6-digit OTP sent to +91 '+esc(CO.m):'We will send a 6-digit OTP to confirm your number.')+'</p>'+
 (CO.sent?'<div class="demo">Demo mode: no SMS is sent. Your OTP is <b>'+CO.otp+'</b></div><label class="f">One-time password<input id="cko" class="otp" inputmode="numeric" data-num="6" autocomplete="one-time-code" placeholder="••••••"></label><button class="btn btn-d" data-act="verify">Verify &amp; Continue</button><button class="lnk" data-act="resend">Resend OTP</button><button class="lnk" data-act="chg">Change number</button>':
 '<label class="f">Mobile number<div class="fld"><span>+91</span><input id="ckm" type="tel" inputmode="numeric" data-num="10" value="'+esc(CO.m)+'" placeholder="Enter 10-digit number"></div></label><button class="btn btn-d" data-act="send">Send OTP</button>')+
@@ -529,11 +541,12 @@ else if(CO.s==2){h='<div class="cw two"><div class="cbx"><h2>Delivery details</h
 '<div class="cbx sumb"><h2 style="font-size:20px;margin-bottom:18px">Order summary</h2>'+cart.map(function(c){var p=byId(c.id);return'<div class="sl"><img src="'+U(p.i,200)+'" alt="" onerror="this.style.visibility=\'hidden\'"><b>'+p.n+'<br><small style="color:var(--mut);font-weight:400">Qty '+c.q+'</small></b><span>'+fmt(p.p*c.q)+'</span></div>'}).join('')+'<div class="tt"><span>Subtotal</span><span>'+fmt(t.sub)+'</span></div><div class="tt"><span>Delivery</span><span>'+(t.sh?fmt(t.sh):'Free')+'</span></div><div class="tt g"><span>Pay on delivery</span><span>'+fmt(t.tot)+'</span></div></div></div>'}
 else{var o=CO.o;h='<div class="cw one">'+stp(3)+'<div class="cbx" style="text-align:center"><div class="ok"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><h2>Order placed!</h2><p class="sm">Thank you, '+esc(o.a.name)+'. Your order <b>#'+o.id+'</b> is confirmed.<br>Pay '+fmt(o.tot)+' in cash on delivery. Expected by '+fd(o.t+3*864e5)+' – '+fd(o.t+5*864e5)+'.</p><div class="demo" style="background:#e6f4ea;border-color:#bfe3cb;color:#1e7a43">Your profile has been created with your name and mobile number.</div><button class="btn btn-d" data-act="track">Track Order in Profile</button><button class="lnk" data-act="shop">Continue shopping</button></div></div>'}
 $('#cof').innerHTML=h}
-$('#co').addEventListener('input',function(e){var n=+e.target.dataset.num;if(!n)return;var v=e.target.value.replace(/\D/g,'');if(n==10&&v.length>10&&v.slice(0,2)=='91')v=v.slice(2);e.target.value=v.slice(0,n)});
+function numIn(e){var n=+e.target.dataset.num;if(!n)return;var v=e.target.value.replace(/\D/g,'');if(n==10&&v.length>10&&v.slice(0,2)=='91')v=v.slice(2);e.target.value=v.slice(0,n)}
+$('#co').addEventListener('input',numIn);$('#pp').addEventListener('input',numIn);
 $('#co').addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var a=b.dataset.act,er=$('#coe');
 if(a=='send'||a=='resend'){var m=a=='send'?$('#ckm').value:CO.m;if(!MOB.test(m)){er.textContent='Please enter a valid 10-digit Indian mobile number.';return}CO.m=m;CO.otp=String(Math.floor(100000+Math.random()*900000));CO.sent=true;rco();if(a=='resend')toast('New OTP sent')}
 else if(a=='chg'){CO.sent=false;rco()}
-else if(a=='verify'){if($('#cko').value==CO.otp){CO.s=2;rco();$('#co').scrollTop=0}else er.textContent='Incorrect OTP. Please try again.'}
+else if(a=='verify'){if($('#cko').value==CO.otp){store('wk_sess',CO.m);CO.s=2;rco();$('#co').scrollTop=0}else er.textContent='Incorrect OTP. Please try again.'}
 else if(a=='place')place();
 else if(a=='track'){rpp();open($('#pp'))}
 else if(a=='shop')closeAll()});
@@ -544,15 +557,22 @@ if(!cart.length)return toast('Your cart is empty.');
 var t=TOT(),now=Date.now(),a={name:g('ckn'),email:em,m1:m1,m2:m2,a1:g('cka'),a2:g('ckb'),l:g('ckl'),c:g('ckc'),s:$('#cks').value,p:g('ckp')};
 var o={id:'WK'+String(now).slice(-8),t:now,trk:'WKT'+String(Math.floor(1e9+Math.random()*9e9)),pay:'Cash on Delivery',sub:t.sub,sh:t.sh,tot:t.tot,a:a,items:cart.map(function(c){var p=byId(c.id);return{n:p.n,i:p.i,q:c.q,p:p.p}})};
 var os=store('wk_orders')||[];os.unshift(o);store('wk_orders',os);
-var old=store('wk_prof');store('wk_prof',{name:a.name,m:m1,m2:m2,email:em,a:{a1:a.a1,a2:a.a2,l:a.l,c:a.c,s:a.s,p:a.p},since:old&&old.since||now});
+var pm=store('wk_profs')||{},old=pm[m1];pm[m1]={name:a.name,m:m1,m2:m2,email:em,a:{a1:a.a1,a2:a.a2,l:a.l,c:a.c,s:a.s,p:a.p},since:old&&old.since||now};store('wk_profs',pm);store('wk_sess',m1);
 cart=[];save();CO.o=o;CO.s=3;rco();$('#co').scrollTop=0}
 var SL=['Order Placed','Packed','Shipped','Out for Delivery','Delivered'],TH=[0,2,24,72,96];
-function rpp(){var P2=store('wk_prof'),O=store('wk_orders')||[],h;
-if(!P2)h='<div class="cw one"><div class="cbx" style="text-align:center"><h2>My Profile</h2><p class="sm">No profile yet. Place your first order and your profile is created automatically from your name and mobile number.</p><button class="btn btn-d" data-close>Start shopping</button></div></div>';
-else{var a=P2.a||{};h='<div class="cw one" style="max-width:860px"><div class="cbx" style="margin-bottom:24px"><div class="ph"><div class="pav">'+esc(P2.name[0]).toUpperCase()+'</div><div><b>'+esc(P2.name)+'</b><span>+91 '+esc(P2.m)+' · '+esc(P2.email)+'</span><span>Member since '+new Date(P2.since).toLocaleDateString('en-IN',{month:'short',year:'numeric'})+' · '+O.length+' order'+(O.length==1?'':'s')+'</span></div></div><div class="ob" style="margin-top:20px"><div><b>Saved address</b>'+esc(a.a1)+', '+esc(a.a2)+(a.l?', '+esc(a.l):'')+'<br>'+esc(a.c)+', '+esc(a.s)+' – '+esc(a.p)+'</div><div><b>Alternate mobile</b>+91 '+esc(P2.m2)+'</div></div></div><h2 style="font-size:24px;margin-bottom:16px">My Orders</h2>'+
+var PL={sent:false,m:'',otp:''};
+function rpp(){var m=sess(),h;
+if(!m){h='<div class="cw one"><div class="cbx"><h2>Log in</h2><p class="sm">'+(PL.sent?'Enter the 6-digit OTP sent to +91 '+esc(PL.m):'Enter your mobile number to access your profile, orders and tracking.')+'</p>'+(PL.sent?'<div class="demo">Demo mode: no SMS is sent. Your OTP is <b>'+PL.otp+'</b></div><label class="f">One-time password<input id="plo" class="otp" inputmode="numeric" data-num="6" autocomplete="one-time-code" placeholder="••••••"></label><button class="btn btn-d" data-pl="verify">Verify &amp; Log in</button><button class="lnk" data-pl="resend">Resend OTP</button><button class="lnk" data-pl="chg">Change number</button>':'<label class="f">Mobile number<div class="fld"><span>+91</span><input id="plm" type="tel" inputmode="numeric" data-num="10" value="'+esc(PL.m)+'" placeholder="Enter 10-digit number"></div></label><button class="btn btn-d" data-pl="send">Send OTP</button>')+'<div class="fe" id="ple" style="margin-top:12px;text-align:center"></div><p class="sm" style="margin:18px 0 0;text-align:center">New here? Your profile is created automatically when you place your first order.</p></div></div>'}
+else{var P2=profOf(m)||{name:'WebKit Customer',m:m,m2:'',email:'',a:null,since:Date.now()},O=(store('wk_orders')||[]).filter(function(o){return o.a.m1==m}),a=P2.a;
+h='<div class="cw one" style="max-width:860px"><div class="cbx" style="margin-bottom:24px"><div class="ph"><div class="pav">'+esc(P2.name[0]).toUpperCase()+'</div><div style="flex:1"><b>'+esc(P2.name)+'</b><span>+91 '+esc(P2.m)+(P2.email?' · '+esc(P2.email):'')+'</span><span>Member since '+new Date(P2.since).toLocaleDateString('en-IN',{month:'short',year:'numeric'})+' · '+O.length+' order'+(O.length==1?'':'s')+'</span></div><button class="btn btn-l" data-pl="out" style="min-height:40px;padding:8px 18px">Log out</button></div>'+(a?'<div class="ob" style="margin-top:20px"><div><b>Saved address</b>'+esc(a.a1)+', '+esc(a.a2)+(a.l?', '+esc(a.l):'')+'<br>'+esc(a.c)+', '+esc(a.s)+' – '+esc(a.p)+'</div><div><b>Alternate mobile</b>+91 '+esc(P2.m2)+'</div></div>':'')+'</div><h2 style="font-size:24px;margin-bottom:16px">My Orders</h2>'+
 (O.length?O.map(function(o){var hrs=(Date.now()-o.t)/36e5,ix=0;TH.forEach(function(x,i){if(hrs>=x)ix=i});var q=o.a;
-return'<div class="oc"><div class="oh"><div><b>Order #'+o.id+'</b><small>Placed on '+fd(o.t)+' · Tracking ID '+o.trk+'</small></div><span class="bd'+(ix==4?' d':'')+'">'+SL[ix]+'</span></div><div class="oi">'+o.items.map(function(it){return'<div><img src="'+U(it.i,120)+'" alt="" onerror="this.style.visibility=\'hidden\'"><span>'+esc(it.n)+' × '+it.q+'</span></div>'}).join('')+'</div><div class="tl">'+SL.map(function(l,i){return'<div class="'+(i<=ix?'dn':'')+'"><b>'+l+'</b>'+(i<=ix?fd(o.t+TH[i]*36e5):'Expected '+fd(o.t+TH[i]*36e5))+'</div>'}).join('')+'</div><div class="ob"><div><b>Shipping to</b>'+esc(q.name)+'<br>'+esc(q.a1)+', '+esc(q.a2)+(q.l?', '+esc(q.l):'')+'<br>'+esc(q.c)+', '+esc(q.s)+' – '+esc(q.p)+'<br>+91 '+esc(q.m1)+' / +91 '+esc(q.m2)+'</div><div><b>Payment &amp; delivery</b>'+o.pay+' · pay '+fmt(o.tot)+' on delivery<br>Items '+fmt(o.sub)+' · Delivery '+(o.sh?fmt(o.sh):'Free')+'<br>Carrier: WebKit Express<br>Estimated delivery: '+fd(o.t+3*864e5)+' – '+fd(o.t+5*864e5)+'</div></div></div>'}).join(''):'<div class="cbx" style="text-align:center">No orders yet.</div>')+'</div>'}
+return'<div class="oc"><div class="oh"><div><b>Order #'+o.id+'</b><small>Placed on '+fd(o.t)+' · Tracking ID '+o.trk+'</small></div><span class="bd'+(ix==4?' d':'')+'">'+SL[ix]+'</span></div><div class="oi">'+o.items.map(function(it){return'<div><img src="'+U(it.i,120)+'" alt="" onerror="this.style.visibility=\'hidden\'"><span>'+esc(it.n)+' × '+it.q+'</span></div>'}).join('')+'</div><div class="tl">'+SL.map(function(l,i){return'<div class="'+(i<=ix?'dn':'')+'"><b>'+l+'</b>'+(i<=ix?fd(o.t+TH[i]*36e5):'Expected '+fd(o.t+TH[i]*36e5))+'</div>'}).join('')+'</div><div class="ob"><div><b>Shipping to</b>'+esc(q.name)+'<br>'+esc(q.a1)+', '+esc(q.a2)+(q.l?', '+esc(q.l):'')+'<br>'+esc(q.c)+', '+esc(q.s)+' – '+esc(q.p)+'<br>+91 '+esc(q.m1)+' / +91 '+esc(q.m2)+'</div><div><b>Payment &amp; delivery</b>'+o.pay+' · pay '+fmt(o.tot)+' on delivery<br>Items '+fmt(o.sub)+' · Delivery '+(o.sh?fmt(o.sh):'Free')+'<br>Carrier: WebKit Express<br>Estimated delivery: '+fd(o.t+3*864e5)+' – '+fd(o.t+5*864e5)+'</div></div></div>'}).join(''):'<div class="cbx" style="text-align:center">No orders found for this number yet.</div>')+'</div>'}
 $('#ppf').innerHTML=h}
+$('#pp').addEventListener('click',function(e){var b=e.target.closest('[data-pl]');if(!b)return;var a=b.dataset.pl,er=$('#ple');
+if(a=='send'||a=='resend'){var m=a=='send'?$('#plm').value:PL.m;if(!MOB.test(m)){er.textContent='Please enter a valid 10-digit Indian mobile number.';return}PL.m=m;PL.otp=String(Math.floor(100000+Math.random()*900000));PL.sent=true;rpp();if(a=='resend')toast('New OTP sent')}
+else if(a=='chg'){PL.sent=false;rpp()}
+else if(a=='verify'){if($('#plo').value==PL.otp){store('wk_sess',PL.m);PL={sent:false,m:'',otp:''};rpp();toast('Logged in')}else er.textContent='Incorrect OTP. Please try again.'}
+else if(a=='out'){store('wk_sess',null);PL={sent:false,m:'',otp:''};rpp();toast('Logged out')}});
 /* scroll animations (repeatable, direction aware) */
 var io=new IntersectionObserver(function(es){es.forEach(function(e){var t=e.target;
 if(e.isIntersecting){t.classList.remove('above');t.classList.add('in')}
